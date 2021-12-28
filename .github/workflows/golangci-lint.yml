@@ -1,0 +1,23 @@
+name: golangci-lint
+
+on:
+  push:
+    branches:
+      - master
+      - '**'
+  pull_request:
+    branches:
+      - master
+      - '**'
+
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        env:
+          GOPROXY: "https://proxy.golang.org,direct"
+          GO111MODULE: "on"
+        uses: golangci/golangci-lint-action@v2
