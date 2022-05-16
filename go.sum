@@ -660,8 +660,8 @@ github.com/ipfs-force-community/go-jsonrpc v0.1.4-0.20210731021807-68e5207079bc 
 github.com/ipfs-force-community/go-jsonrpc v0.1.4-0.20210731021807-68e5207079bc/go.mod h1:XBBpuKIMaXIIzeqzO1iucq4GvbF8CxmXRFoezRh+Cx4=
 github.com/ipfs-force-community/metrics v1.0.0/go.mod h1:mn40SioMuKtjmRumHFy/fJ26Pn028XuDjUJE9dorjyw=
 github.com/ipfs-force-community/metrics v1.0.1-0.20211022060227-11142a08b729/go.mod h1:mn40SioMuKtjmRumHFy/fJ26Pn028XuDjUJE9dorjyw=
-github.com/ipfs-force-community/metrics v1.0.1-0.20211228055608-9462dc86e157 h1:HkFCM7oueZC6Lnj6HyJC6gxC0qbjBlWCYg36x3omKyk=
-github.com/ipfs-force-community/metrics v1.0.1-0.20211228055608-9462dc86e157/go.mod h1:mn40SioMuKtjmRumHFy/fJ26Pn028XuDjUJE9dorjyw=
+github.com/ipfs-force-community/metrics v1.0.1-0.20220516020337-2f3bf9a2c9e3 h1:bvUZTh/JfIplbqi9GGcRDLXdYwxPzYYCtaxs4xjuZkc=
+github.com/ipfs-force-community/metrics v1.0.1-0.20220516020337-2f3bf9a2c9e3/go.mod h1:6K3fdYrWuoAPl74K0ReJWPhBhsyEG6zHo1zH9GVSpeg=
 github.com/ipfs-force-community/venus-common-utils v0.0.0-20210924063144-1d3a5b30de87/go.mod h1:RTVEOzM+hkpqmcEWpyLDkx1oGO5r9ZWCgYxG/CsXzJQ=
 github.com/ipfs/bbloom v0.0.1/go.mod h1:oqo8CVWsJFMOZqTglBG4wydCE4IQA/G2/SEofB0rjUI=
 github.com/ipfs/bbloom v0.0.4/go.mod h1:cS9YprKXpoZ9lT0n/Mw/a6/aFV6DTjTLYHeA+gyqMG0=

@@ -13,7 +13,7 @@ require (
 	github.com/gbrlsnchs/jwt/v3 v3.0.1
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
-	github.com/ipfs-force-community/metrics v1.0.1-0.20211228055608-9462dc86e157
+	github.com/ipfs-force-community/metrics v1.0.1-0.20220516020337-2f3bf9a2c9e3
 	github.com/ipfs/go-cid v0.1.0
 	github.com/ipfs/go-log/v2 v2.5.0
 	github.com/modern-go/reflect2 v1.0.2
