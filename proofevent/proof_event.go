@@ -7,7 +7,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/ipfs-force-community/venus-gateway/metrics"
 	"github.com/ipfs-force-community/venus-gateway/validator"
+	"go.opencensus.io/stats"
+	"go.opencensus.io/tag"
 
 	"github.com/filecoin-project/go-address"
 	"github.com/filecoin-project/go-state-types/abi"
@@ -77,6 +80,11 @@ func (e *ProofEventStream) ListenProofEvent(ctx context.Context, policy *types2.
 			return
 		}
 
+		ctx, _ = tag.New(ctx, tag.Upsert(metrics.IPKey, ip), tag.Upsert(metrics.MinerAddressKey, mAddr.String()),
+			tag.Upsert(metrics.MinerTypeKey, "pprof"))
+		stats.Record(ctx, metrics.MinerRegister.M(1))
+		stats.Record(ctx, metrics.MinerSource.M(1))
+
 		out <- &types2.RequestEvent{
 			ID:         sharedTypes.NewUUID(),
 			Method:     "InitConnect",
@@ -96,6 +104,7 @@ func (e *ProofEventStream) ListenProofEvent(ctx context.Context, policy *types2.
 			e.connLk.Unlock()
 		}
 		log.Infof("remove connections %s of miner %s", channel.ChannelId, mAddr)
+		stats.Record(ctx, metrics.MinerUnregister.M(1))
 	}()
 	return out, nil
 }
@@ -121,8 +130,12 @@ func (e *ProofEventStream) ComputeProof(ctx context.Context, miner address.Addre
 	if err != nil {
 		return nil, err
 	}
+
+	start := time.Now()
 	var result []builtin.PoStProof
 	err = e.SendRequest(ctx, channels, "ComputeProof", payload, &result)
+	_ = stats.RecordWithTags(ctx, []tag.Mutator{tag.Upsert(metrics.MinerAddressKey, miner.String())},
+		metrics.ComputeProof.M(metrics.SinceInMilliseconds(start)))
 	if err == nil {
 		return result, nil
 	}

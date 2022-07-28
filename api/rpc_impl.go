@@ -12,6 +12,7 @@ import (
 	"github.com/filecoin-project/specs-storage/storage"
 
 	"github.com/filecoin-project/venus/venus-shared/actors/builtin"
+	v1API "github.com/filecoin-project/venus/venus-shared/api/gateway/v1"
 	sharedTypes "github.com/filecoin-project/venus/venus-shared/types"
 
 	types "github.com/filecoin-project/venus/venus-shared/types/gateway"
@@ -32,6 +33,7 @@ type IGatewayAPI interface {
 }
 
 var _ IGatewayAPI = (*GatewayAPIImpl)(nil)
+var _ v1API.IGateway = (*GatewayAPIImpl)(nil)
 
 type GatewayAPIImpl struct {
 	proofevent.IProofEventAPI
