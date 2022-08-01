@@ -43,25 +43,18 @@
 
 ```bash
 $ curl http://localhost:4569/debug/metrics
-  # HELP gateway_computeproof Call ComputeProof spent time
-  # TYPE gateway_computeproof histogram
-  gateway_computeproof_bucket{miner="t01004",le="1"} 6
-  gateway_computeproof_bucket{miner="t01004",le="3"} 6
-  gateway_computeproof_bucket{miner="t01004",le="5"} 6
-  gateway_computeproof_bucket{miner="t01004",le="7"} 6
-  gateway_computeproof_bucket{miner="t01004",le="9"} 6
-  gateway_computeproof_bucket{miner="t01004",le="11"} 6
-  gateway_computeproof_bucket{miner="t01004",le="13"} 6
-  gateway_computeproof_bucket{miner="t01004",le="15"} 6
-  gateway_computeproof_bucket{miner="t01004",le="17"} 6
-  gateway_computeproof_bucket{miner="t01004",le="20"} 6
-  gateway_computeproof_bucket{miner="t01004",le="25"} 6
-  gateway_computeproof_bucket{miner="t01004",le="30"} 6
-  gateway_computeproof_bucket{miner="t01004",le="40"} 6
-  gateway_computeproof_bucket{miner="t01004",le="60"} 6
-  gateway_computeproof_bucket{miner="t01004",le="+Inf"} 6
-  gateway_computeproof_sum{miner="t01004"} 0
-  gateway_computeproof_count{miner="t01004"} 6
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.01"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.05"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.1"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.3"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.6"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="0.8"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="1"} 0
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="2"} 322
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="3"} 544
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="4"} 787
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="5"} 790
+  gateway_wallet_sign_bucket{wallet_account="forcenet-nv16",le="6"} 791
   ... ...
 ```
 > 如果遇到错误 `curl: (56) Recv failure: Connection reset by peer`, 请使用本机 `ip` 地址, 如下所示:

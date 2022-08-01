@@ -31,6 +31,7 @@ var (
 	WalletAddressNum = stats.Int64("wallet_address_num", "Address owned by wallet", stats.UnitDimensionless)
 	WalletSource     = stats.Int64("wallet_source", "Wallet IP", stats.UnitDimensionless)
 	WalletAddAddr    = stats.Int64("wallet_add_addr", "Wallet add a new address", stats.UnitDimensionless)
+	WalletRemoveAddr = stats.Int64("wallet_remove_addr", "Wallet remove a new address", stats.UnitDimensionless)
 	WalletConnNum    = stats.Int64("wallet_conn_num", "Wallet connection count", stats.UnitDimensionless)
 
 	// miner
@@ -42,10 +43,10 @@ var (
 
 	// method call
 	WalletSign         = stats.Float64("wallet_sign", "Call WalletSign spent time", stats.UnitMilliseconds)
-	WalletList         = stats.Float64("walletlist", "Call WalletList spent time", stats.UnitMilliseconds)
-	ComputeProof       = stats.Float64("computeproof", "Call ComputeProof spent time", stats.UnitMilliseconds)
-	IsUnsealed         = stats.Float64("isunsealed", "Call IsUnsealed spent time", stats.UnitMilliseconds)
-	SectorsUnsealPiece = stats.Float64("sectorsunsealpiece", "Call SectorsUnsealPiece spent time", stats.UnitMilliseconds)
+	WalletList         = stats.Float64("wallet_list", "Call WalletList spent time", stats.UnitMilliseconds)
+	ComputeProof       = stats.Float64("compute_proof", "Call ComputeProof spent time", stats.UnitMilliseconds)
+	IsUnsealed         = stats.Float64("is_unsealed", "Call IsUnsealed spent time", stats.UnitMilliseconds)
+	SectorsUnsealPiece = stats.Float64("sectors_unseal_piece", "Call SectorsUnsealPiece spent time", stats.UnitMilliseconds)
 )
 
 var (
@@ -78,7 +79,12 @@ var (
 	walletAddAddrView = &view.View{
 		Measure:     WalletAddAddr,
 		Aggregation: view.Count(),
-		TagKeys:     []tag.Key{WalletAccountKey, IPKey},
+		TagKeys:     []tag.Key{WalletAccountKey, WalletAddressKey},
+	}
+	walletRemoveAddrView = &view.View{
+		Measure:     WalletRemoveAddr,
+		Aggregation: view.Count(),
+		TagKeys:     []tag.Key{WalletAccountKey, WalletAddressKey},
 	}
 	walletConnNumView = &view.View{
 		Measure:     WalletConnNum,
@@ -148,6 +154,7 @@ var views = []*view.View{
 	walletAddressNumView,
 	walletSourceView,
 	walletAddAddrView,
+	walletRemoveAddrView,
 	walletConnNumView,
 
 	minerRegisterView,

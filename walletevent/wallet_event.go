@@ -150,7 +150,7 @@ func (w *WalletEventStream) AddNewAddress(ctx context.Context, channelId sharedT
 			return err
 		}
 		_ = stats.RecordWithTags(ctx, []tag.Mutator{tag.Upsert(metrics.WalletAddressKey, addr.String())},
-			metrics.WalletAddAddr.M(int64(len(addrs))))
+			metrics.WalletAddAddr.M(1))
 	}
 
 	err = w.walletConnMgr.addNewAddress(walletAccount, channelId, addrs)
@@ -167,6 +167,11 @@ func (w *WalletEventStream) RemoveAddress(ctx context.Context, channelId sharedT
 	walletAccount, exit := jwtclient.CtxGetName(ctx)
 	if !exit {
 		return errors.New("unable to get account name in method RemoveAddress request")
+	}
+	ctx, _ = tag.New(ctx, tag.Upsert(metrics.WalletAccountKey, walletAccount))
+	for _, addr := range addrs {
+		_ = stats.RecordWithTags(ctx, []tag.Mutator{tag.Upsert(metrics.WalletAddressKey, addr.String())},
+			metrics.WalletRemoveAddr.M(1))
 	}
 	err := w.walletConnMgr.removeAddress(walletAccount, channelId, addrs)
 	if err == nil {
